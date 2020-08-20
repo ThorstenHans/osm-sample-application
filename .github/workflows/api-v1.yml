@@ -1,0 +1,23 @@
+name: Build and Push API v1 Image
+on:
+  push:
+    branches: [ master ]
+    paths: ['src/api-v1/*', 'dockerfiles/api-v1.Dockerfile']
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_USER: thorstenhans
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build and Push Docker Image
+      uses: docker/build-push-action@v1.1.0
+      with:
+        username: ${{ env.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_PAT }}
+        repository: ${{ env.DOCKER_USER }}/osm-sample-api-v1
+        tags: ci-latest, ci-${{ github.run_number }}
+        tag_with_sha: true
+        dockerfile: dockerfiles/api-v1.Dockerfile
+        push: true

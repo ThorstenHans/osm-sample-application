@@ -1,0 +1,10 @@
+apiVersion: split.smi-spec.io/v1alpha2
+kind: TrafficSplit
+metadata:
+  name: api-split
+  namespace: osm-sample-app
+spec:
+  service: api.osm-sample-app # <root-service>.<namespace>
+  backends:
+    - service: api-v1
+      weight: 100
