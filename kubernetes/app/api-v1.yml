@@ -15,7 +15,7 @@ spec:
     spec:
       serviceAccountName: api-v1-service-account
       containers:
-        - image: thorstenhans/osm-sample-api:0.1.0
+        - image: thorstenhans/osm-sample-api-v1:0.0.4
           name: osm-sample-api
           ports:
             - containerPort: 80

@@ -1,12 +1,20 @@
 apiVersion: split.smi-spec.io/v1alpha2
 kind: TrafficSplit
 metadata:
-  name: api-split
+  name: ab-test
   namespace: osm-sample-app
 spec:
   service: api.osm-sample-app # <root-service>.<namespace>
   backends:
     - service: api-v1
-      weight: 80
+      weight: 0
     - service: api-v2
-      weight: 20
+      weight: 100
+---
+kind: HTTPRouteGroup
+metadata:
+  name: ab-test
+matches:
+- name: edge-users
+  headers:
+  - user-agent: ".*Edg.*"

@@ -7,13 +7,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: apiv2
+      app: api-v2
   template:
     metadata:
       labels:
-        app: apiv2
+        app: api-v2
     spec:
       serviceAccountName: api-v2-service-account
       containers:
-        - image: thorstenhans/osm-sample-api:0.2.0
+        - image: thorstenhans/osm-sample-api-v2:0.0.4
           name: osm-sample-api

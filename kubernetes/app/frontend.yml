@@ -15,7 +15,7 @@ spec:
     spec:
       serviceAccountName: frontend-service-account
       containers:
-        - image: osm-sample-frontend:0.0.1
+        - image: thorstenhans/osm-sample-frontend:0.0.4
           name: osm-sample
           env:
             - name: API_URL
