@@ -1,10 +1,10 @@
 terraform {
-    required_version = "=0.13.0"
+  required_version = "=0.13.0"
 }
-provider "azurerm" { 
-    features {}
-    version = "=2.23.0"
-     }
+provider "azurerm" {
+  features {}
+  version = "=2.23.0"
+}
 
 locals {
   default_tags = { app = "Open Service Mesh Demo" }
@@ -26,7 +26,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
   default_node_pool {
     name       = "default"
-    node_count = 2
+    node_count = var.aks_worker_node_count
     vm_size    = "Standard_D2_v2"
   }
 
