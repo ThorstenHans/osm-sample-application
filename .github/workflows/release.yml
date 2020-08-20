@@ -3,7 +3,7 @@ on:
   push:
     branches: [ master ]
     tags: ['*.*.*']
-    paths: ['src/api-v1/*', 'src/*' 'dockerfiles/*']
+    paths: ['src/api-v1/*', 'src/*', 'dockerfiles/*']
   workflow_dispatch:
 jobs:
   build:
