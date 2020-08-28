@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  backend_service_uri: http://api.osm-canary-deployment-sample-app.svc.cluster.local/api/values
+kind: ConfigMap
+metadata:
+  name: osm-sample-config
+  namespace: osm-canary-deployment-sample-app

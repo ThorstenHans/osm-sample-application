@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: osm-simple-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      serviceAccountName: frontend-service-account
+      containers:
+        - image: thorstenhans/osm-sample-frontend:0.0.6
+          name: frontend
+          env:
+            - name: API_URL
+              valueFrom:
+                  configMapKeyRef:
+                    name: osm-sample-config
+                    key: backend_service_uri
+          ports:
+            - containerPort: 80
+              name: http

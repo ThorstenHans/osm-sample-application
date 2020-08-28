@@ -1,0 +1,50 @@
+kind: TrafficTarget
+apiVersion: access.smi-spec.io/v1alpha2
+metadata:
+  name: api-v1
+  namespace: osm-canary-deployment-sample-app
+spec:
+  destination:
+    kind: ServiceAccount
+    name: api-v1-service-account
+    namespace: osm-canary-deployment-sample-app
+  rules:
+    - kind: HTTPRouteGroup
+      name: api-service-routes
+      matches:
+        - api
+  sources:
+    - kind: ServiceAccount
+      name: frontend-service-account
+      namespace: osm-canary-deployment-sample-app
+---
+kind: TrafficTarget
+apiVersion: access.smi-spec.io/v1alpha2
+metadata:
+  name: api-v2
+  namespace: osm-canary-deployment-sample-app
+spec:
+  destination:
+    kind: ServiceAccount
+    name: api-v2-service-account
+    namespace: osm-canary-deployment-sample-app
+  rules:
+    - kind: HTTPRouteGroup
+      name: api-service-routes
+      matches:
+        - api
+  sources:
+    - kind: ServiceAccount
+      name: frontend-service-account
+      namespace: osm-canary-deployment-sample-app
+---
+apiVersion: specs.smi-spec.io/v1alpha3
+kind: HTTPRouteGroup
+metadata:
+  name: api-service-routes
+  namespace: osm-canary-deployment-sample-app
+spec:
+  matches:
+    - name: api
+      pathRegex: "/api/values"
+      methods: ["*"]

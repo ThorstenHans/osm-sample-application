@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: osm-simple-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      serviceAccountName: api-service-account
+      containers:
+        - image: thorstenhans/osm-sample-api-v1:0.0.4
+          name: api
+          ports:
+            - containerPort: 80
+              name: http

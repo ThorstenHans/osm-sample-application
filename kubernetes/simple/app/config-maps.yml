@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  backend_service_uri: http://api.osm-simple-app.svc.cluster.local/api/values
+kind: ConfigMap
+metadata:
+  name: osm-sample-config
+  namespace: osm-simple-app

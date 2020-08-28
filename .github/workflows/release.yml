@@ -1,0 +1,47 @@
+name: Build and Push Images
+on:
+  push:
+    branches: [ master ]
+    tags: ['*.*.*']
+    paths: ['src/*', 'dockerfiles/*']
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_USER: thorstenhans
+    steps:
+    - uses: actions/checkout@v2
+    - name: Grab version from tag
+      id: tag
+      run: echo ::set-output name=version::${GITHUB_REF#refs/tags/}
+    - name: Build and Push API 1 Docker Image
+      uses: docker/build-push-action@v1.1.0
+      with:
+        username: ${{ env.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_PAT }}
+        repository: ${{ env.DOCKER_USER }}/osm-sample-api-v1
+        tags: latest, ${{ steps.tag.outputs.version }}
+        tag_with_sha: true
+        dockerfile: dockerfiles/api-v1.Dockerfile
+        push: true
+    - name: Build and Push API 2 Docker Image
+      uses: docker/build-push-action@v1.1.0
+      with:
+        username: ${{ env.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_PAT }}
+        repository: ${{ env.DOCKER_USER }}/osm-sample-api-v2
+        tags: latest, ${{ steps.tag.outputs.version }}
+        tag_with_sha: true
+        dockerfile: dockerfiles/api-v2.Dockerfile
+        push: true
+    - name: Build and Push Frontend Docker Image
+      uses: docker/build-push-action@v1.1.0
+      with:
+        username: ${{ env.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_PAT }}
+        repository: ${{ env.DOCKER_USER }}/osm-sample-frontend
+        tags: latest, ${{ steps.tag.outputs.version }}
+        tag_with_sha: true
+        dockerfile: dockerfiles/frontend.Dockerfile
+        push: true
