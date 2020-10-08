@@ -4,7 +4,7 @@ The NGINX Ingress deployment is optional. However, if an Ingress is deployed to 
 
 ## Running without Ingress
 
-If you want to use the samples without an Ingress deployment, you have to use port-fowarding and point to the corresponding frontend pod of each sample application.
+If you want to use the samples without an Ingress deployment, you have to use port-forwarding and point to the corresponding frontend pod of each sample application.
 
 ## Requirements
 
