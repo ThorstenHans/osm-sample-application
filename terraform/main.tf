@@ -1,9 +1,9 @@
 terraform {
-  required_version = "=0.13.0"
+  required_version = "~>0.13.0"
 }
 provider "azurerm" {
   features {}
-  version = "=2.23.0"
+  version = "~>2"
 }
 
 locals {
@@ -12,7 +12,7 @@ locals {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "rg-open-service-mesh-sample"
+  name     = "rg-osm-sample"
   location = var.location
   tags     = local.tags
 }
