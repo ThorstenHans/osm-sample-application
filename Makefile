@@ -1,6 +1,6 @@
 #!make
 
-DOCKER_REGISTRY_QUALIFIER = "thorstenhans"
+DOCKER_REGISTRY_QUALIFIER=thorstenhans
 
 .PHONY: build-docker-images
 build-docker-images:
