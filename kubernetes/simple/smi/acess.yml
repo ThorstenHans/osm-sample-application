@@ -1,5 +1,5 @@
 kind: TrafficTarget
-apiVersion: access.smi-spec.io/v1alpha2
+apiVersion: access.smi-spec.io/v1alpha3
 metadata:
   name: api
   namespace: osm-simple-app
@@ -18,7 +18,7 @@ spec:
       name: frontend-service-account
       namespace: osm-simple-app
 ---
-apiVersion: specs.smi-spec.io/v1alpha3
+apiVersion: specs.smi-spec.io/v1alpha4
 kind: HTTPRouteGroup
 metadata:
   name: api-service-routes
